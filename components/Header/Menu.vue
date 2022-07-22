@@ -46,6 +46,7 @@ export default {
 
 <style lang="scss" scoped>
 .menu {
+  z-index: 10;
   &__hamburguer {
     display: flex;
     flex-direction: column;
