@@ -23,6 +23,7 @@ export default {
     '~/components/Footer',
     '~/components/Form',
     '~/components/Header',
+    '~/components/Generic',
   ],
 
   webfontloader: {

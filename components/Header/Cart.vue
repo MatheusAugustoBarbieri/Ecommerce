@@ -1,12 +1,26 @@
 <template>
   <div class="cart">
-    <div class="cart__count">10</div>
+    <client-only>
+      <div class="cart__count" v-if="amountItens">{{ amountItens.length }}</div>
+    </client-only>
   </div>
 </template>
 
 <script>
 export default {
   name: 'CartComponent',
+  data() {
+    return {
+      x: 0,
+    }
+  },
+  computed: {
+    amountItens() {
+      if (!process.browser) return
+      if (!localStorage.getItem('itens')) return
+      return JSON.parse(localStorage.getItem('itens'))
+    },
+  },
 }
 </script>
 

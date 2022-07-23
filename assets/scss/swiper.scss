@@ -1,6 +1,7 @@
 .swiper {
+  padding-top: 37px;
+  padding-bottom: 78px;
   width: 100%;
-  padding: 80px 0 150px 0;
   overflow: visible;
 }
 .swiper-slide {
@@ -15,12 +16,18 @@
 .swiper-button-next,
 .swiper-button-prev {
   border-radius: 35px;
-  color: #ac17b0;
+  color: #f78600;
   width: 34px;
   height: 34px;
   box-shadow: 0px 3px 6px #0000004d;
   z-index: 500;
   background-color: white;
+}
+.swiper-button-next:hover {
+  transform: scale(1.05);
+}
+.swiper-button-after:hover {
+  transform: scale(1.05);
 }
 .swiper-button-prev::after {
   font-size: 13px;
@@ -39,15 +46,9 @@
 .swiper-container-rtl .swiper-button-next {
   left: -4px;
 }
-.swiper-pagination-bullet {
-  width: 32px;
-  height: 9px;
-  background-color: #c0bdbd;
-  border-radius: 2px;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: #ac17b0;
+.swiper .swiper-slide-active {
+  transform: scale(1.08);
+  transition: all 0.3s ease-in-out;
 }
 
 @media (min-width: 425px) {
@@ -60,21 +61,27 @@
     left: 7px;
   }
 }
-@media (min-width: 1024px) {
-  .swiper-slide {
-    opacity: 1;
-  }
-}
-@media (min-width: 1280px) {
+@media (min-width: 768px) {
   .swiper {
-    overflow: hidden;
     margin: 20px 0;
-    padding: 100px 10px 180px 10px;
+    padding-top: 65px;
+    padding-bottom: 76px;
   }
 
   .swiper .swiper-slide-active {
     opacity: 1;
     transform: scale(1.08);
     transition: all 0.3s ease-in-out;
+  }
+}
+@media (min-width: 1024px) {
+  .swiper-slide {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 1280px) {
+  .swiper {
+    overflow: hidden;
   }
 }

@@ -1,17 +1,17 @@
 <template>
   <div class="menu">
     <div
+      v-if="is_mobile"
       class="menu__hamburguer"
       :class="{ 'menu__hamburguer--active': menu_open }"
       @click="menu_open = !menu_open"
-      v-if="is_mobile"
     >
       <span></span>
       <span></span>
       <span></span>
     </div>
     <transition name="animation-menu">
-      <div class="menu__links" v-if="menu_open || !is_mobile">
+      <div v-if="menu_open || !is_mobile" class="menu__links">
         <div class="menu__link-container">
           <NuxtLink to="/">Home</NuxtLink>
           <NuxtLink to="/about">Sobre</NuxtLink>

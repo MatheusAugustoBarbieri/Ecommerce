@@ -3,7 +3,7 @@
     <div class="container">
       <div class="banner__box">
         <h1 class="banner__title">Garanta agora seu novo pokémon!</h1>
-        <BannerProduct />
+        <ProductCard :prod="prodBanner" :featured="true" />
         <button class="banner__button">Compre agora</button>
       </div>
     </div>
@@ -11,8 +11,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'BannerMainComponent',
+  computed: {
+    ...mapGetters({
+      prodBanner: 'productBanner/getProdBanner',
+    }),
+  },
 }
 </script>
 
