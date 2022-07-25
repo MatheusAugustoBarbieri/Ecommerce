@@ -1,5 +1,9 @@
 <template>
-  <div v-if="prod" class="banner-product">
+  <div
+    v-if="prod"
+    class="banner-product"
+    :style="`border-color: ${bordercolor}`"
+  >
     <div class="banner-product__featured" v-if="featured">
       <p>Melhor oferta.</p>
       <div class="banner-product__featured-custom"></div>
@@ -35,6 +39,10 @@ export default {
     featured: {
       type: Boolean,
       default: false,
+    },
+    bordercolor: {
+      type: String,
+      default: 'white',
     },
   },
 

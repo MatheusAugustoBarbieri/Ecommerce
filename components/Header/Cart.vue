@@ -1,9 +1,9 @@
 <template>
-  <div class="cart">
+  <a href="/carrinho" class="cart">
     <client-only>
       <div class="cart__count" v-if="amountItens">{{ amountItens.length }}</div>
     </client-only>
-  </div>
+  </a>
 </template>
 
 <script>

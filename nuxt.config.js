@@ -24,6 +24,7 @@ export default {
     '~/components/Form',
     '~/components/Header',
     '~/components/Generic',
+    '~/components/CartCarousel',
   ],
 
   webfontloader: {
