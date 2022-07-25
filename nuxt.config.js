@@ -23,6 +23,8 @@ export default {
     '~/components/Footer',
     '~/components/Form',
     '~/components/Header',
+    '~/components/Generic',
+    '~/components/CartCarousel',
   ],
 
   webfontloader: {
@@ -80,7 +82,12 @@ export default {
   },
 
   axios: {
-    baseURL: '/',
+    baseURL: process.env.API,
+    headers: {
+      common: {
+        Accept: 'application/json',
+      },
+    },
   },
 
   pwa: {
