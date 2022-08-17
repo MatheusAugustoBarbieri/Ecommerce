@@ -3,6 +3,7 @@
     <HeaderMain />
     <Nuxt />
     <Footer />
+    <Overlay />
   </div>
 </template>
 

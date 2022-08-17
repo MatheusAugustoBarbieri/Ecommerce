@@ -2,6 +2,7 @@
   <div>
     <BannerMain />
     <Carousel />
+    <FormMain />
   </div>
 </template>
 

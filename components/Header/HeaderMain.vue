@@ -21,6 +21,8 @@ export default {
   padding: 15px 0;
   border-bottom: 1px solid rgb(199, 198, 198);
   position: relative;
+  z-index: 21;
+  background: white;
   &__logo {
     background: url('@/assets/img/logos/pokemon-logo.png') no-repeat;
     background-size: contain;

@@ -1,17 +1,17 @@
 <template>
   <div class="menu">
     <div
-      v-if="is_mobile"
+      v-if="device_width <= 768"
       class="menu__hamburguer"
-      :class="{ 'menu__hamburguer--active': menu_open }"
-      @click="menu_open = !menu_open"
+      :class="{ 'menu__hamburguer--active': menu_header_open }"
+      @click="openHeaderMenu()"
     >
       <span></span>
       <span></span>
       <span></span>
     </div>
     <transition name="animation-menu">
-      <div v-if="menu_open || !is_mobile" class="menu__links">
+      <div v-if="menu_header_open || device_width > 768" class="menu__links">
         <div class="menu__link-container">
           <NuxtLink to="/">Home</NuxtLink>
           <NuxtLink to="/about">Sobre</NuxtLink>
@@ -23,23 +23,25 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
+import device from '@/mixins/device.js'
 export default {
   name: 'MenuHeaderComponent',
+  mixins: [device],
   data() {
     return {
       menu_open: false,
-      is_mobile: true,
     }
   },
-  mounted() {
-    this.checkSize()
+  computed: {
+    ...mapState({
+      menu_header_open: state => state.modals.menu_header_open,
+    }),
   },
   methods: {
-    checkSize() {
-      if (process.browser) {
-        this.is_mobile = window.innerWidth <= 768
-      }
-    },
+    ...mapMutations({
+      openHeaderMenu: 'modals/openHeaderMenu',
+    }),
   },
 }
 </script>
