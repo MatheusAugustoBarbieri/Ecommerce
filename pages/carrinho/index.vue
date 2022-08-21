@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'CarrinhoPage',
   async asyncData({ store }) {
@@ -13,6 +14,14 @@ export default {
     } catch (error) {
       return error
     }
+  },
+  mounted() {
+    this.setItemCart()
+  },
+  methods: {
+    ...mapActions({
+      setItemCart: 'cart/setItemCart',
+    }),
   },
 }
 </script>

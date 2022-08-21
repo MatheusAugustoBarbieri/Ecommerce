@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="layout">
     <HeaderMain />
     <Nuxt />
     <Footer />
@@ -12,3 +12,12 @@ export default {
   name: 'LayoutDefault',
 }
 </script>
+<style lang="scss" scoped>
+.layout {
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+</style>

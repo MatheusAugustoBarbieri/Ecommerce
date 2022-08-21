@@ -1,10 +1,10 @@
 <template>
   <div class="group-cart">
     <client-only>
-      <div class="container" v-if="products">
+      <div class="container" v-if="cart_product">
         <CartProducts
           class="group-cart__cart-position"
-          v-for="(item, index) in products"
+          v-for="(item, index) in cart_product"
           :key="index"
           :prod="item"
         />
@@ -14,14 +14,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'GroupCart',
   computed: {
-    products() {
-      if (!process.browser) return
-      if (!localStorage.getItem('itens')) return
-      return JSON.parse(localStorage.getItem('itens'))
-    },
+    ...mapState({
+      cart_product: state => state.cart.cart_product,
+    }),
   },
 }
 </script>

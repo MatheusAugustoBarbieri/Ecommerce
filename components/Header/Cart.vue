@@ -1,25 +1,22 @@
 <template>
   <a href="/carrinho" class="cart">
     <client-only>
-      <div class="cart__count" v-if="amountItens">{{ amountItens.length }}</div>
+      <div v-if="cart_product" class="cart__count">
+        {{ cart_product.length }}
+      </div>
     </client-only>
   </a>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'CartComponent',
-  data() {
-    return {
-      x: 0,
-    }
-  },
+
   computed: {
-    amountItens() {
-      if (!process.browser) return
-      if (!localStorage.getItem('itens')) return
-      return JSON.parse(localStorage.getItem('itens'))
-    },
+    ...mapState({
+      cart_product: state => state.cart.cart_product,
+    }),
   },
 }
 </script>
