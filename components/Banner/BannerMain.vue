@@ -4,19 +4,26 @@
       <div class="banner__box">
         <h1 class="banner__title">Garanta agora seu novo pokémon!</h1>
         <ProductCard :prod="prodBanner" :featured="true" />
-        <button class="banner__button">Compre agora</button>
+        <button class="banner__button" @click="setItemCart(prodBanner)">
+          Compre agora
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'BannerMainComponent',
   computed: {
     ...mapGetters({
       prodBanner: 'productBanner/getProdBanner',
+    }),
+  },
+  methods: {
+    ...mapActions({
+      setItemCart: 'cart/setItemCart',
     }),
   },
 }
