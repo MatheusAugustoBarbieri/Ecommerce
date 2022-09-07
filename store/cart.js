@@ -12,20 +12,26 @@ export const actions = {
   setItemCart({ commit }, item) {
     try {
       const obj = JSON.parse(localStorage.getItem('itens'))
+
       let x = []
+
       if (item) {
         x = [item]
       }
-      if (obj && obj.length > 0) {
+
+      if (obj && obj.length) {
         if (item) {
-          x = [...obj]
+          x = [item, ...obj]
         } else {
           x = obj
         }
       }
+
       commit('setItemCart', x)
-      localStorage.setItem('itens', JSON.stringify(x))
-      this.$router.push({ path: '/carrinho' })
+      if (item) {
+        localStorage.setItem('itens', JSON.stringify(x))
+        this.$router.push({ path: '/carrinho' })
+      }
     } catch (error) {
       return error
     }
@@ -44,5 +50,10 @@ export const actions = {
     } catch (error) {
       return error
     }
+  },
+  clearAll({ commit }) {
+    commit('setItemCart', {})
+    localStorage.removeItem('itens')
+    window.alert('Carrinho limpo.')
   },
 }

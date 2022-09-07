@@ -1,20 +1,31 @@
 <template>
   <div class="group-cart">
     <client-only>
-      <div class="container" v-if="cart_product">
-        <CartProducts
-          class="group-cart__cart-position"
-          v-for="(item, index) in cart_product"
-          :key="index"
-          :prod="item"
-        />
+      <div class="group-cart__box container">
+        <template v-if="cart_product && cart_product.length">
+          <CartProducts
+            v-for="(item, index) in cart_product"
+            :key="index"
+            class="group-cart__cart-position"
+            :prod="item"
+          />
+        </template>
+        <ItensNull v-else />
+      </div>
+      <div
+        v-if="cart_product && cart_product.length"
+        class="group-cart__box-button container"
+      >
+        <button class="group-cart__button" @click="clearAll()">
+          Concluir compra
+        </button>
       </div>
     </client-only>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'GroupCart',
   computed: {
@@ -22,19 +33,62 @@ export default {
       cart_product: state => state.cart.cart_product,
     }),
   },
+  methods: {
+    ...mapActions({
+      clearAll: 'cart/clearAll',
+    }),
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .group-cart {
-  .container {
+  &__box {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
   }
   &__cart-position {
     margin: 15px 0;
+  }
+  &__box-button {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 50px;
+    justify-content: center;
+  }
+  &__button {
+    width: 80%;
+    height: 50px;
+    max-width: 300px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #f78600;
+    box-shadow: 3px 3px #c26c03;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      transition: all 0.1s ease-in-out;
+      transform: scale(1.02);
+    }
+  }
+}
+@media (min-width: 768px) {
+  .group-cart {
+    &__box {
+      justify-content: space-between;
+    }
+    &__box-button {
+      justify-content: flex-end;
+      // margin-bottom: 0;
+      margin-top: 80px;
+    }
   }
 }
 </style>

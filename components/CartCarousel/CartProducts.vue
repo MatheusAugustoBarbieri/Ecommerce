@@ -1,12 +1,3 @@
-<template>
-  <div v-if="prod" class="product">
-    <ProductCard :prod="prod" :bordercolor="bgType(prod)" />
-    <button class="product__button-remove" @click="removeItemCart(prod)">
-      Remover
-    </button>
-  </div>
-</template>
-
 <script>
 import { mapActions } from 'vuex'
 export default {
@@ -48,6 +39,23 @@ export default {
 }
 </script>
 
+<template>
+  <div v-if="prod" class="product">
+    <ProductCard :prod="prod" :bordercolor="bgType(prod)" />
+    <div class="product__box">
+      <div
+        v-if="prod.name"
+        class="product__name"
+        :style="`color:${bgType(prod)}`"
+      >
+        {{ prod.name }}
+      </div>
+      <button class="product__button-remove" @click="removeItemCart(prod)">
+        Remover
+      </button>
+    </div>
+  </div>
+</template>
 <style lang="scss" scoped>
 .product {
   width: 250px;
@@ -55,9 +63,19 @@ export default {
   flex-direction: column;
   align-items: center;
   border-radius: 15px;
-  padding: 40px 0 50px 0;
+  padding: 40px 0 40px 0;
   border: 2px solid rgb(124, 124, 124);
-
+  &__box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+  }
+  &__name {
+    font-size: 20px;
+    font-weight: 600;
+  }
   &__button-remove {
     width: 80%;
     height: 50px;
@@ -77,10 +95,26 @@ export default {
     }
   }
 }
+@media (min-width: 768px) {
+  .product {
+    flex-direction: row;
+
+    width: 100%;
+    padding: 20px;
+    &__box {
+      margin: 0;
+    }
+    &__name {
+      margin-bottom: 25px;
+    }
+    &__button-remove {
+      max-width: 250px;
+    }
+  }
+}
 @media (min-width: 1024px) {
   .product {
-    width: 300px;
-    padding: 60px 0 50px 0;
+    width: 48%;
   }
 }
 </style>

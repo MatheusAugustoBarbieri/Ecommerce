@@ -66,7 +66,7 @@ export default {
 
 <style lang="scss" scoped>
 .banner-product {
-  width: 160px;
+  min-width: 160px;
   height: auto;
   border-radius: 34px;
   border: solid 4px white;

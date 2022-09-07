@@ -7,8 +7,10 @@
 </template>
 
 <script>
+import attCart from '~/mixins/attCart.js'
 export default {
   name: 'IndexPage',
+  mixins: [attCart],
   async asyncData({ store }) {
     try {
       await store.dispatch('productBanner/setProdBanner')
