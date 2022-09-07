@@ -13,9 +13,9 @@
     <transition name="animation-menu">
       <div v-if="menu_header_open || device_width > 768" class="menu__links">
         <div class="menu__link-container">
-          <NuxtLink to="/">Home</NuxtLink>
-          <NuxtLink to="/about">Sobre</NuxtLink>
-          <a href="#contact">Fale conosco</a>
+          <NuxtLink class="menu__link" to="/">Home</NuxtLink>
+          <NuxtLink class="menu__link" to="/about">Sobre</NuxtLink>
+          <div class="menu__link" @click="navigate()">Fale conosco</div>
         </div>
       </div>
     </transition>
@@ -42,6 +42,18 @@ export default {
     ...mapMutations({
       openHeaderMenu: 'modals/openHeaderMenu',
     }),
+    navigate() {
+      this.$route.path === '/'
+        ? this.scrollTo('contact')
+        : window.location.replace('/#contact')
+    },
+    scrollTo(elementId) {
+      const scrollTip = document.querySelector(`#${elementId}`).offsetTop
+      scroll({
+        top: scrollTip,
+        behavior: 'smooth',
+      })
+    },
   },
 }
 </script>
@@ -96,12 +108,11 @@ export default {
     background: white;
     border-bottom: 1px solid rgb(199, 198, 198);
     padding: 15px 0;
-
-    a {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-    }
+  }
+  &__link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
   }
   &__link-container {
     display: flex;
@@ -130,14 +141,14 @@ export default {
       border: none;
       height: auto;
       padding: 0;
-
-      a {
-        font-size: 18px;
+    }
+    &__link {
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.1s ease-in-out;
+      &:hover {
         transition: all 0.1s ease-in-out;
-        &:hover {
-          transition: all 0.1s ease-in-out;
-          transform: scale(1.02);
-        }
+        transform: scale(1.02);
       }
     }
     &__link-container {

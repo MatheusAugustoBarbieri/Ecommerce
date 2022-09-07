@@ -8,9 +8,15 @@
           type="text"
           required
           minlength="1"
-          :style="!$parent.form_valid.full_name ? 'border-color: red;' : ''"
+          :class="
+            !$parent.form_valid.full_name ? 'form-input__invalid-input' : ''
+          "
         />
-        <label for="name">Insira seu nome</label>
+        <label
+          :style="!$parent.form_valid.full_name ? 'color: red;' : ''"
+          for="name"
+          >Insira seu nome</label
+        >
         <span v-if="!$parent.form_valid.full_name">Nome inválido</span>
       </div>
 
@@ -20,9 +26,13 @@
           v-model="$parent.form.email"
           type="text"
           required
-          :style="!$parent.form_valid.email ? 'border-color: red;' : ''"
+          :class="!$parent.form_valid.email ? 'form-input__invalid-input' : ''"
         />
-        <label for="email">Seu e-mail</label>
+        <label
+          :style="!$parent.form_valid.email ? 'color: red;' : ''"
+          for="email"
+          >Seu e-mail</label
+        >
         <span v-if="!$parent.form_valid.email">Nome inválido</span>
       </div>
 
@@ -34,9 +44,15 @@
           placeholder=" "
           type="tel"
           required
-          :style="!$parent.form_valid.phone_number ? 'border-color: red;' : ''"
+          :class="
+            !$parent.form_valid.phone_number ? 'form-input__invalid-input' : ''
+          "
         />
-        <label for="phone">Seu telefone</label>
+        <label
+          :style="!$parent.form_valid.phone_number ? 'color: red;' : ''"
+          for="phone"
+          >Seu telefone</label
+        >
         <span v-if="!$parent.form_valid.phone_number">Telefone inválido</span>
       </div>
 
@@ -46,9 +62,15 @@
           v-model="$parent.form.subject"
           type="text"
           required
-          :style="!$parent.form_valid.subject ? 'border-color: red;' : ''"
+          :class="
+            !$parent.form_valid.subject ? 'form-input__invalid-input' : ''
+          "
         />
-        <label for="assunto">O assunto</label>
+        <label
+          :style="!$parent.form_valid.subject ? 'color: red;' : ''"
+          for="assunto"
+          >O assunto</label
+        >
         <span v-if="!$parent.form_valid.subject">Assunto inválido</span>
       </div>
     </div>
@@ -60,9 +82,11 @@
         rows="10"
         required
         class="form-input__text-area"
-        :style="!$parent.form_valid.message ? 'border-color: red;' : ''"
+        :class="!$parent.form_valid.message ? 'form-input__invalid-input' : ''"
       ></textarea>
-      <label for="msg">Deixe sua mensagem</label>
+      <label :style="!$parent.form_valid.message ? 'color: red;' : ''" for="msg"
+        >Deixe sua mensagem</label
+      >
       <span v-if="!$parent.form_valid.message" style="bottom: -10px"
         >Mensagem inválida</span
       >
@@ -121,6 +145,17 @@ export default {
       padding-left: 13px;
       padding-right: 15px;
     }
+    span {
+      position: absolute;
+      bottom: -12px;
+      left: 5px;
+      color: red;
+      font-size: 11px;
+    }
+  }
+  &__invalid-input {
+    border-color: red !important;
+    color: red !important;
   }
 }
 @media (min-width: 768px) {
@@ -144,6 +179,9 @@ export default {
       input {
         min-width: 289px;
       }
+    }
+    span {
+      bottom: -15px;
     }
   }
 }
